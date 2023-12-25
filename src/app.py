@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 import os
 import json
 import re
@@ -7,6 +7,16 @@ BASE_DIR = os.getcwd()
 DATABASE_DIR = os.path.join(BASE_DIR, "data")
 
 app = Flask(__name__)
+
+@app.route("/")
+def index():
+    data = [
+        {
+            "title": "Cotización del dolar blue 2023",
+            "url":url_for('data'),
+        }
+    ]
+    return render_template("index.html", title="Paginas disponibles", data=data)
 
 @app.route("/data")
 def data():
