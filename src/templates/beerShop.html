@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<header>
+    <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+    </nav>
+    <h1>{{title}}</h1>
+</header>
+<main>
+    <h3>Bienvenido al Mercado de Cervezas &#128513;</h3>
+    <div class="products">
+        {% for d in data %}
+        <div class="product">
+            <img src="{{ d.image }}" class="imgproduct">
+            <h3>{{d.brand}}</h3>
+            <h4>{{d.product}}</h4>
+            <h4>${{d.price}}</h4>
+        </div>
+        {% endfor %}
+    </div>
+    
+
+</main>
+<footer>
+    <p>Pagina creada por Mario Mori (AlopexMM)</p>
+</footer>
+{% endblock %}

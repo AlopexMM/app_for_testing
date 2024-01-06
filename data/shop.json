@@ -1,0 +1,20 @@
+[
+    {
+        "product":"Cerveza Heineken 473 Ml",
+        "brand":"Heineken",
+        "image": "CervezaHeineken473Ml.webp",
+        "price": "845"
+    },
+    {
+        "product": "Cerveza Corona No Retornable 330 Ml",
+        "brand": "Corona",
+        "image": "CervezaCoronaNoRetornable330Ml.webp",
+        "price": "840"
+    },
+    {
+        "product": "Cerveza Grolsch Retornable 925 Ml",
+        "brand" : "Grolsch",
+        "image" : "CervezaGrolschRetornable925Ml.webp",
+        "price": "1571.25"
+    }
+]
