@@ -5,14 +5,17 @@
     <h1>{{title}}</h1>
 </header>
 <main>
-    <blockquote>
+    <div class="notification">
         <p>Las paginas que se encuentran aqui son ejemplos de lo que se puede encontrar en otros sitios</p>
-    </blockquote>
-    <ul>
-        {% for d in data %}
-        <li><a href="{{d.url}}">{{d.title}}</a></li>
-        {% endfor %}
-    </ul>
+    </div>
+    <div class="content">
+        <ul>
+            {% for d in data %}
+            <li><a href="{{d.url}}">{{d.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
 </main>
 <footer>
     <p>Pagina creada por Mario Mori (AlopexMM)</p>
