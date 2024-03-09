@@ -2,9 +2,9 @@
   "name": "app_for_testing",
   "version": "1.0.0",
   "description": "Para correr la aplicación ejecutar lo siguiente para Windows",
-  "main": "index.js",
+  "main": "server.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.mjs"
   },
   "keywords": [],
   "author": "",

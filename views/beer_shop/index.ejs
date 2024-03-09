@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="section">
+        <div class="container">
+            <div class="content">
+                <blockquote>Bienvenido a la Tienda de Cervezas</blockquote>
+            </div>
+            <div class="columns is-flex is-flex-wrap-wrap">
+                <% products.forEach(product => { %>
+                    <div class="column is-3">
+                        <div class="card" style="height: 500px;">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                <img src="/images/<%= product.image %>" alt="<%= product.image %>">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content is-small">
+                                    <p class="title is-5"><%= product.name %></p>
+                                    <div class="tags">
+                                        <span class="tag is-light"><%= product.brand %></span>
+                                    </div>
+                                    <div class="tags has-addons are-medium">
+                                        <span class="tag">Precio</span>
+                                        <span class="tag is-warning">$ <%= product.price %></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

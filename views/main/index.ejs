@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <div class="section">
+        <div class="container is-max-widescreen">
+            <div class="content is-medium">
+                <blockquote>
+                    Las paginas que se encuentran aqui son ejemplos generales de casos que podemos encontrar en la web
+                </blockquote>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Paginas</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% urls.forEach( url => { %>
+                            <tr>
+                                <td>
+                                    <a href="/<%= url.link %>">
+                                        <%= url.name %>
+                                    </a>
+                                </td>
+                                
+                            </tr>
+                       <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

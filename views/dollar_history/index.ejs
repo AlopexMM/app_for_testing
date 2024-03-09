@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <section class="section">
+        <div class="container is-max-widescreen is-centered">
+            <div class="content">
+                <blockquote>Registro historico de todo 2023 para el <strong>Dolar Blue</strong></blockquote>
+            </div>
+            <table class="table is-bordered is-fullwidth">
+                <thead>
+                    <tr>
+                        <td>Fecha</td>
+                        <td>Venta</td>
+                        <td>Compra</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% records.forEach(record => { %>
+                        <tr>
+                            <td><%= record.date %></td>
+                            <td>$ <%= record.value_sell %></td>
+                            <td>$ <%= record.value_buy %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>
