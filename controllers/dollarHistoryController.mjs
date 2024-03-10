@@ -10,6 +10,5 @@ export function index(req, res) {
         title: "Historico del dolar blue",
         records: records
     }
-    console.log(records)
     res.render('dollar_history/index', options)
 }
