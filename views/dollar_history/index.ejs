@@ -18,11 +18,13 @@
                 </thead>
                 <tbody>
                     <% records.forEach(record => { %>
-                        <tr>
-                            <td><%= record.date %></td>
-                            <td>$ <%= record.value_sell %></td>
-                            <td>$ <%= record.value_buy %></td>
-                        </tr>
+                        <% if(record.source === "Blue") { %>
+                            <tr>
+                                <td><%= record.date %></td>
+                                <td>$ <%= record.value_sell %></td>
+                                <td>$ <%= record.value_buy %></td>
+                            </tr>
+                        <% } %>
                     <% }) %>
                 </tbody>
             </table>
