@@ -3,6 +3,8 @@
 // import { fileURLToPath } from 'node:url'
 import { URL } from 'node:url'
 import express from 'express'
+import serveFavicon from 'serve-favicon'
+import { Sequelize } from 'sequelize'
 
 // App imports
 import mainRoutes from './routes/mainRoutes.mjs'
@@ -23,6 +25,7 @@ const css = new URL('./public/css', import.meta.url).pathname.replace('/','')
 app.use('/images', express.static(img))
 app.use('/js', express.static(js))
 app.use('/css', express.static(css))
+app.use(serveFavicon(new URL('./public/favicon.ico', import.meta.url).pathname.replace('/', '')))
 
 // Engine
 app.set('view engine', 'ejs')
@@ -31,6 +34,8 @@ app.set('view engine', 'ejs')
 app.use(mainRoutes)
 app.use(beerShopRoutes)
 app.use(dollarHistoryRoutes)
+
+// Create database in memory
 
 
 app.listen(PORT, () => {

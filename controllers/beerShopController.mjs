@@ -7,3 +7,7 @@ export function index(req, res) {
     }
     res.render('beer_shop/index', options)
 }
+
+export function cartshop(req, res) {
+
+}
