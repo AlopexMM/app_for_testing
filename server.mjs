@@ -4,7 +4,7 @@
 import { URL } from 'node:url'
 import express from 'express'
 import serveFavicon from 'serve-favicon'
-import { Sequelize } from 'sequelize'
+import { dollarDb } from './data/DBInitializers.mjs'
 
 // App imports
 import mainRoutes from './routes/mainRoutes.mjs'
@@ -35,9 +35,10 @@ app.use(mainRoutes)
 app.use(beerShopRoutes)
 app.use(dollarHistoryRoutes)
 
-// Create database in memory
-
+// File for database in memory
+const dollarFilePath = new URL('./data/evolution.json', import.meta.url).pathname.replace('/', '')
 
 app.listen(PORT, () => {
+    dollarDb(dollarFilePath)
     console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })

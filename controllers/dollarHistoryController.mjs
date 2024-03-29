@@ -1,10 +1,12 @@
-import data from '../data/evolution.json' assert { type: 'json' }
+import Dollar from '../models/dollar.mjs'
+import { Op } from 'sequelize'
 
-export function index(req, res) {
-    const records = data.filter( o => {
-        const regex = /2023-[0-9]+-[0-9]+/g
-
-        if(o.date.match(regex)) return o.date
+export async function index(req, res) {
+    const records = await Dollar.findAll({
+        where: { 
+            date: { [Op.like] : '%2023%' },
+            source: 'Blue'
+        }
     })
     const options = {
         title: "Historico del dolar blue",

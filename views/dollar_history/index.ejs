@@ -8,6 +8,7 @@
             <div class="content">
                 <blockquote>Registro historico de todo 2023 para el <strong>Dolar Blue</strong></blockquote>
             </div>
+            <br>
             <table class="table is-bordered is-fullwidth">
                 <thead>
                     <tr>
@@ -18,13 +19,11 @@
                 </thead>
                 <tbody>
                     <% records.forEach(record => { %>
-                        <% if(record.source === "Blue") { %>
-                            <tr>
-                                <td><%= record.date %></td>
-                                <td>$ <%= record.value_sell %></td>
-                                <td>$ <%= record.value_buy %></td>
-                            </tr>
-                        <% } %>
+                        <tr>
+                            <td><%= record.date %></td>
+                            <td>$ <%= record.sell %></td>
+                            <td>$ <%= record.buy %></td>
+                        </tr>
                     <% }) %>
                 </tbody>
             </table>
