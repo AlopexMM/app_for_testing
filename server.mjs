@@ -1,10 +1,9 @@
 // General imports
-// import { dirname } from 'node:path'
-// import { fileURLToPath } from 'node:url'
 import { URL } from 'node:url'
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import serveFavicon from 'serve-favicon'
-import { dollarDb } from './data/DBInitializers.mjs'
+import { dollarDb, beerShopDb } from './data/DBInitializers.mjs'
 
 // App imports
 import mainRoutes from './routes/mainRoutes.mjs'
@@ -16,6 +15,7 @@ const PORT = 3001
 
 // Middleware
 const app = express()
+app.use(cookieParser())
 
 // static
 const img = new URL('./public/img',import.meta.url).pathname.replace('/','')
@@ -37,8 +37,11 @@ app.use(dollarHistoryRoutes)
 
 // File for database in memory
 const dollarFilePath = new URL('./data/evolution.json', import.meta.url).pathname.replace('/', '')
+const productsFilePath = new URL('./data/shop.json', import.meta.url).pathname.replace('/', '')
+const clientsFilePath = new URL('./data/client.json', import.meta.url).pathname.replace('/', '')
 
 app.listen(PORT, () => {
     dollarDb(dollarFilePath)
+    beerShopDb(productsFilePath, clientsFilePath)
     console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })

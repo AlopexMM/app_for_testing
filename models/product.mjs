@@ -1,35 +1,36 @@
-import Sequelize, { DataTypes } from "sequelize";
-const sequelize = new Sequelize('sqlite::memory:', {logging: false})
+import { Sequelize, DataTypes, Model } from "sequelize";
 
-class Dollar extends Sequelize.Model {}
+const sequelize = new Sequelize('sqlite::memory:')
 
-Dollar.init({
+class Product extends Model {}
+
+Product.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
     },
-    date: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    source: {
+    brand: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    sell: {
-        type: DataTypes.DECIMAL(10,2),
+    image: {
+        type: DataType.STRING,
         allowNull: false
     },
-    buy: {
-
+    price: {
         type: DataTypes.DECIMAL(10,2),
         allowNull: false
     }
-},{
+
+}, {
     sequelize,
-    modelName: 'Dollar',
+    modelName: 'Product',
     timestamps: false
 })
 
-export default Dollar 
+export default Product
