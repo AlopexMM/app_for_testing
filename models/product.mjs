@@ -8,7 +8,8 @@ Product.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
     },
     name: {
         type: DataTypes.STRING,
@@ -19,7 +20,7 @@ Product.init({
         allowNull: false
     },
     image: {
-        type: DataType.STRING,
+        type: DataTypes.STRING,
         allowNull: false
     },
     price: {

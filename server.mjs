@@ -38,7 +38,7 @@ app.use(dollarHistoryRoutes)
 // File for database in memory
 const dollarFilePath = new URL('./data/evolution.json', import.meta.url).pathname.replace('/', '')
 const productsFilePath = new URL('./data/shop.json', import.meta.url).pathname.replace('/', '')
-const clientsFilePath = new URL('./data/client.json', import.meta.url).pathname.replace('/', '')
+const clientsFilePath = new URL('./data/clients.json', import.meta.url).pathname.replace('/', '')
 
 app.listen(PORT, () => {
     dollarDb(dollarFilePath)

@@ -1,44 +1,38 @@
 [
     {
-        "id": "c1",
         "name":"Cerveza Heineken 473 Ml",
         "brand":"Heineken",
         "image": "beer-can.png",
-        "price": "845"
+        "price": 845.00
     },
     {
-        "id": "c2",
         "name": "Cerveza Corona No Retornable 330 Ml",
         "brand": "Corona",
         "image": "beer-can2.png",
         "price": "840"
     },
     {
-        "id": "c3",
         "name": "Cerveza Grolsch Retornable 925 Ml",
         "brand" : "Grolsch",
         "image" : "beer-can.png",
-        "price": "1571.25"
+        "price": 1571.25
     },
     {
-        "id": "c4",
         "name": "Cerveza Modelo Retornable 775 Ml",
         "brand" : "Modelo",
         "image" : "beer-can2.png",
-        "price": "1571"
+        "price": 1571.00
     },
     {
-        "id": "c5",
         "name": "Cerveza Quilmes Retornable",
         "brand" : "Quilmes",
         "image" : "beer-can.png",
-        "price": "157.25"
+        "price": 157.25
     },
     {
-        "id": "c6",
         "name": "Cerveza Stella 925 Ml",
         "brand" : "Stella",
         "image" : "beer-can2.png",
-        "price": "171.25"
+        "price": 171.25
     }
 ]

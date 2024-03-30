@@ -1,6 +1,7 @@
 import Dollar from "../models/dollar.mjs"
 import Client from "../models/client.mjs"
-import Product from "../models/products.mjs"
+import Product from "../models/product.mjs"
+import Ticket from "../models/ticket.mjs"
 import fs from "node:fs"
 
 /**
@@ -30,8 +31,9 @@ export function dollarDb(filePath) {
  * @param productsPath la ubicación del archivo con los productos
  * @param clientPath la ubicación del archivo con los clientes
 **/
-export function beerShopDb(productsPath, clientsPath) {
-    fs.readFile(productsPath), { encoding: 'utf-8' }, async (err, data) => {
+export async function beerShopDb(productsPath, clientsPath) {
+    await Ticket.sync()
+    fs.readFile(productsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
         const jsonData = JSON.parse(data)
         await Product.sync()
@@ -43,8 +45,8 @@ export function beerShopDb(productsPath, clientsPath) {
                 price: p.price
             })
         }
-    }
-    fs.readFile(clientsPath), { encoding: 'utf-8' }, async (err, data) => {
+    })
+    fs.readFile(clientsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
         const jsonData = JSON.parse(data)
         await Client.sync()
@@ -56,5 +58,5 @@ export function beerShopDb(productsPath, clientsPath) {
                 postalCode: c.postalCode
             })
         }
-    }
+    })
 }

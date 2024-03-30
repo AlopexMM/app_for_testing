@@ -1,8 +1,10 @@
 import express from 'express'
 const router = express.Router()
-import { index, cartshop } from '../controllers/beerShopController.mjs'
+import { index, loginGet, loginPost } from '../controllers/beerShopController.mjs'
 
 router.get('/beer-shop', index)
-router.post('/beer-shop/cartshop', cartshop)
+
+router.get('/beer-shop/login', loginGet)
+router.post('/beer-shop/login', loginPost)
 
 export default router

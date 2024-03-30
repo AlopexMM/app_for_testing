@@ -30,7 +30,14 @@ export async function loginGet(req, res) {
 }
 
 export async function loginPost(req, res) {
+    const client = await Client.findOne({ name: req.body.name, lastname: req.body.lastname })
 
+    if (client) {
+        res.cookie('login', true, { httpOnly: true })
+        res.redirect('/beer-shop')
+    }
+    else res.redirect('/beer-shop/login')
+    
 }
 
 export async function signupGet(req, res) {
