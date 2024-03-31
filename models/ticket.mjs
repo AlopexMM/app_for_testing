@@ -12,9 +12,32 @@ Ticket.init({
         defaulValue: DataTypes.UUIDV4,
         primaryKey: true
     },
+    clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    products: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        set(values) {
+            let stringValues = ''
+            const length = values.length
+            for ( let i = 0; i < length; i++ ) {
+                if(i+1 == length) {
+                    stringValues += values[i]
+                } else {
+                    stringValues += `${values[i]};`
+                }
+            }
+            this.setDataValue('products', stringValues)
+        },
+        get() {
+            return this.getDataValue('products').split(';')
+        }
+    },
     creditCard: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     paid: {
         type: DataTypes.BOOLEAN,
@@ -26,8 +49,5 @@ Ticket.init({
     modelName: 'Ticket',
     timestamps: false
 })
-
-Ticket.belongsTo(Client)
-Ticket.hasMany(Product)
 
 export default Ticket

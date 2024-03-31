@@ -2,29 +2,29 @@
 <html lang="en">
 <%- include('../partials/head.ejs') %>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <section class="section">
-        <div class="container">
-            <form action="/beer-shop/login" method="post">
-                <div class="field">
+    <%- include('../partials/beer_shop/nav.ejs') %>
+    <section class="section is-flex-widescreen">
+        <div class="container is-centered">
+            <form action="/beer-shop/login" method="post" class="box">
+                <div class="field mb-3">
                     <div class="control">
                         <input type="text" class="input" placeholder="Nombre" name="name">
                     </div>
                 </div>
-                <div class="field">
+                <div class="field mb-3">
                     <div class="control">
                         <input type="text" class="input" placeholder="Apellido" name="lastname">
                     </div>
                 </div>
-                <div class="field">
+                <div class="field mb-3">
                     <div class="control">
-                        <button class="button is-primary">Ingresar</button>
+                        <button class="button is-primary" type="submit">Ingresar</button>
                     </div>
                 </div>
             </form>
         </div>
     </section>
     <%- include('../partials/footer.ejs') %>
-    <script src="js/shop.js" type="text/javascript"></script>
+    <!-- <script src="js/shop.js" type="text/javascript"></script> -->
 </body>
 </html>

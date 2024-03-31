@@ -33,10 +33,12 @@ export function dollarDb(filePath) {
 **/
 export async function beerShopDb(productsPath, clientsPath) {
     await Ticket.sync()
+    await Product.sync()
+    await Client.sync()
+
     fs.readFile(productsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
         const jsonData = JSON.parse(data)
-        await Product.sync()
         for (let p of jsonData) {
             await Product.create({
                 name: p.name,
@@ -49,7 +51,6 @@ export async function beerShopDb(productsPath, clientsPath) {
     fs.readFile(clientsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
         const jsonData = JSON.parse(data)
-        await Client.sync()
         for (let c of jsonData) {
             await Client.create({
                 name: c.name,
