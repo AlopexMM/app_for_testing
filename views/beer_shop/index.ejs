@@ -9,12 +9,10 @@
                 <div class="level-item has-text-centered level-right">
                     <div>
                         <p class="heading" id="counter">0</p>
-                        <form action="/beer-shop/cartshop" method="post">
-                            <input type="text" value="" id="items" hidden>
-                            <div class="button is-small" type="submit">
-                                <i class="fas fa-cart-shopping"></i>
-                            </div>
-                        </form>
+                        <p type="text" id="items" name="items" hidden></p>
+                        <div class="button is-small" onclick="sendItems()">
+                            <i class="fas fa-cart-shopping"></i>
+                        </div>
                     </div>
                 </div>
             </div>
