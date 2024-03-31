@@ -5,21 +5,26 @@
     <%- include('../partials/beer_shop/nav.ejs') %>
     <section class="section">
         <div class="container">
-            <div class="level">
+            <div class="level is-mobile">
                 <div class="level-item has-text-centered level-right">
-                    <form action="/beer-shop/cartshop" method="post">
-                        <input type="text" value="" id="items" hidden>
-                        <div class="button is-large" type="submit">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </div>
-                    </form>
+                    <div>
+                        <p class="heading" id="counter">0</p>
+                        <form action="/beer-shop/cartshop" method="post">
+                            <input type="text" value="" id="items" hidden>
+                            <div class="button is-small" type="submit">
+                                <i class="fas fa-cart-shopping"></i>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
             <br>
-            <div class="content">
-                <blockquote>Bienvenido a la Tienda de Cervezas</blockquote>
-            </div>
-            <br>
+            <% if(login) { %>
+                <div class="notification is-info" id="user-notification">
+                    <button class="delete" onclick="closeNotification()"></button>
+                    Ya ingreso el usuario
+                </div>
+            <% } %>
             <hr>
             <div class="columns is-flex is-flex-wrap-wrap">
                 <% products.forEach(product => { %>

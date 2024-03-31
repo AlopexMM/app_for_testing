@@ -33,10 +33,9 @@ class Autorization {
      * @param res datos del response
      * @param next objeto para continuar con el siguiente middelware
      */
-    verifyUser(req, res, next) {
-        const key = req.cookie['key']
-        if (this.users.includes(key)) next()
-        else res.redirect('/beer-shop/login')
+    verifyUser(key) {
+        if (this.users.includes(key)) return true
+        return false
     }
 
     /**
@@ -45,6 +44,18 @@ class Autorization {
      */
     addUser(key) {
         this.users.push(key)
+    }
+
+    /**
+     * Quita la key del listado de usuarios
+     * @param key
+     */
+    removeUser(key) {
+        const newUsers = []
+        this.users.forEach(user => {
+            if (user != key ) newUsers.push(user)
+        })
+        this.users = newUsers
     }
 }
 

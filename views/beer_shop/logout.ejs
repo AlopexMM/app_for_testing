@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/beer_shop/nav.ejs') %>
+    <section class="section is-flex-widescreen">
+        <div class="container is-centered">
+            <form action="/beer-shop/logout" method="post" class="box">
+                <div class="field mb-3">
+                    <label for="name" class="label"><%= user.name %></label>
+                    <div class="control">
+                        <input type="text" class="input" name="name" value="<%= user.name %>" hidden>
+                    </div>
+                </div>
+                <div class="field mb-3">
+                    <label for="lastname" class="label"><%= user.lastname %></label>
+                    <div class="control">
+                        <input type="text" class="input" name="lastname" value="<%= user.lastname %>" hidden>
+                    </div>
+                </div>
+                <div class="field mb-3">
+                    <div class="control">
+                        <button class="button is-primary" type="submit">Salir</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <%- include('../partials/footer.ejs') %>
+    <!-- <script src="js/shop.js" type="text/javascript"></script> -->
+</body>
+</html>
