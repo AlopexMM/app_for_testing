@@ -41,15 +41,15 @@ export async function loginPost(req, res) {
 }
 
 export async function signupGet(req, res) {
-
+    res.render('beer_shop/signup', { title: 'Tienda de cervezas | Inscribirse' })
 }
 
 export async function signupPost(req, res) {
-
+    
 }
 
 export async function ticketGet(req, res) {
-    
+
 }
 
 export async function ticketPost(req, res) {
