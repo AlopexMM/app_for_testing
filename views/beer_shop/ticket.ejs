@@ -19,12 +19,13 @@
                         <% let total = 0.0 %>
                         <% products.forEach( product => { %>
                             <% total += product.price %>
-                            <tr id="<%= product.id %>-<%= product.name %>">
+                            <% const complexId = `${product.id}-${product.name}` %>
+                            <tr id="<%= complexId %>">
                                 <td><%= product.name %></td>
                                 <td><%= product.id %></td>
                                 <td><%= product.price %></td>
                                 <td>
-                                    <button class="button" onclick="deleteItem(this, '<%= product.price %>')">
+                                    <button class="button" onclick="deleteItem(this, '<%= complexId %>')">
                                         <i class="fa-thin fa-trash"></i>
                                     </button>
                                 </td>
