@@ -78,10 +78,11 @@ export async function ticket(req, res) {
             lastname: user[1]
         }
     })
+    const items = req.body.id.length > 1 ? req.body.id : [req.body.id]
     const products = await Product.findAll({
         where: {
             id: {
-                [Op.or]: req.body.id
+                [Op.in]: items
             }
         }
     })
@@ -89,7 +90,8 @@ export async function ticket(req, res) {
     const options = {
         title: 'Tienda de cervezas | Ticket',
         products: products,
-        client: client
+        client: client,
+        items: items
     }
 
     res.render('beer_shop/ticket', options)

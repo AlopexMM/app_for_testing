@@ -10,7 +10,7 @@
                     <div class="columns is-flex is-flex-wrap-wrap">
                         <% products.forEach(product => { %>
                             <div class="column is-3">
-                                <div class="card" style="height: 500px;">
+                                <div class="card" style="height: 350px;">
                                     <div class="card-image">
                                         <figure class="image is-4by3">
                                         <img src="/images/<%= product.image %>" alt="<%= product.image %>">
@@ -18,16 +18,11 @@
                                     </div>
                                     <div class="card-content">
                                         <div class="content is-small">
-                                            <p class="title is-5"><%= product.name %></p>
-                                            <div class="tags m-3">
-                                                <span class="tag is-light"><%= product.brand %></span>
-                                            </div>
-                                            <div class="tags has-addons are-medium m-3">
-                                                <span class="tag">Precio</span>
-                                                <span class="tag is-warning">$ <%= product.price %></span>
-                                            </div>
+                                            <p class="title is-6"><%= product.name %></p>
+                                            <span class="tag is-light mt-3"><%= product.brand %></span>
+                                            <span class="tag is-warning mt-3">$ <%= product.price %></span>
                                             <% const productJson = JSON.stringify(product) %>
-                                            <div class="button m-3" onclick="additem(<%= productJson %>)">Agregar</div> 
+                                            <div class="button mt-3 is-small" onclick="additem(<%= productJson %>)">Agregar</div> 
                                         </div>
                                     </div>
                                 </div>
