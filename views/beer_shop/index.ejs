@@ -5,50 +5,57 @@
     <%- include('../partials/beer_shop/nav.ejs') %>
     <section class="section">
         <div class="container">
-            <div class="level is-mobile">
-                <div class="level-item has-text-centered level-right">
-                    <div>
-                        <p class="heading" id="counter">0</p>
-                        <p type="text" id="items" name="items" hidden></p>
-                        <div class="button is-small" onclick="sendItems()">
-                            <i class="fas fa-cart-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <% if(login) { %>
-                <div class="notification is-info" id="user-notification">
-                    <button class="delete" onclick="closeNotification()"></button>
-                    Ya ingreso el usuario
-                </div>
-            <% } %>
-            <hr>
-            <div class="columns is-flex is-flex-wrap-wrap">
-                <% products.forEach(product => { %>
-                    <div class="column is-3">
-                        <div class="card" style="height: 500px;">
-                            <div class="card-image">
-                                <figure class="image is-4by3">
-                                <img src="/images/<%= product.image %>" alt="<%= product.image %>">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content is-small">
-                                    <p class="title is-5"><%= product.name %></p>
-                                    <div class="tags m-3">
-                                        <span class="tag is-light"><%= product.brand %></span>
+            <div class="columns">
+                <div class="column is-two-thirds">
+                    <div class="columns is-flex is-flex-wrap-wrap">
+                        <% products.forEach(product => { %>
+                            <div class="column is-3">
+                                <div class="card" style="height: 500px;">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                        <img src="/images/<%= product.image %>" alt="<%= product.image %>">
+                                        </figure>
                                     </div>
-                                    <div class="tags has-addons are-medium m-3">
-                                        <span class="tag">Precio</span>
-                                        <span class="tag is-warning">$ <%= product.price %></span>
+                                    <div class="card-content">
+                                        <div class="content is-small">
+                                            <p class="title is-5"><%= product.name %></p>
+                                            <div class="tags m-3">
+                                                <span class="tag is-light"><%= product.brand %></span>
+                                            </div>
+                                            <div class="tags has-addons are-medium m-3">
+                                                <span class="tag">Precio</span>
+                                                <span class="tag is-warning">$ <%= product.price %></span>
+                                            </div>
+                                            <% const productJson = JSON.stringify(product) %>
+                                            <div class="button m-3" onclick="additem(<%= productJson %>)">Agregar</div> 
+                                        </div>
                                     </div>
-                                    <div class="button m-3" onclick="additem('<%= product.id %>')">Agregar</div> 
                                 </div>
                             </div>
-                        </div>
+                        <% }) %>
                     </div>
-                <% }) %>
+                </div>
+                <div class="column">
+                    <form action="/beer-shop/ticket" method="post" id="shopping-cart" hidden>
+                        <table class="table is-bordered">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shopping-cart-details"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2" class="has-text-left">TOTAL</th>
+                                    <td id="shopping-cart-total" class="has-text-right">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button class="button is-link mt-3" type="submit">Pagar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

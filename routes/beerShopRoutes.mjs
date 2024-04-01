@@ -1,16 +1,19 @@
 import express from 'express'
 const router = express.Router()
-import { index, loginGet, loginPost, ticketGet, ticketPost, signupGet, signupPost, logoutGet, logoutPost } from '../controllers/beerShopController.mjs'
+import { index, loginGet, loginPost, ticket, signupGet, signupPost, logout } from '../controllers/beerShopController.mjs'
+
+function isAuthenticated(req, res, next) {
+    if (req.session.user) next()
+    else res.redirect('/beer-shop/login')
+}
 
 router.get('/beer-shop', index)
 
 router.get('/beer-shop/login', loginGet)
 router.post('/beer-shop/login', loginPost)
-router.get('/beer-shop/logout', logoutGet)
-router.post('/beer-shop/logout', logoutPost)
+router.get('/beer-shop/logout', logout)
 
-router.get('/beer-shop/ticket', ticketGet)
-router.post('/beer-shop/ticket', ticketPost)
+router.post('/beer-shop/ticket', isAuthenticated, ticket)
 
 router.get('/beer-shop/signup', signupGet)
 router.post('/beer-shop/signup', signupPost)

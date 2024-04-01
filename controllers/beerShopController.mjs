@@ -1,34 +1,24 @@
 import { Op } from 'sequelize'
+import crypto from 'node:crypto'
 import Client from '../models/client.mjs'
 import Product from '../models/product.mjs'
 import Ticket from '../models/ticket.mjs'
-import Autorization from '../assets/authorization.mjs'
-const authorization = new Autorization()
+import Authorization from '../assets/authorization.mjs'
+const authorization = new Authorization()
 
 export async function index(req, res) {
-    let login = false
-    try {
-        login = req.query['login']
-    } catch (err) {
-        console.error(err)
-    }
 
     const products = await Product.findAll()
     
     const options = {
         title: "Tienda de cervezas",
         products: products,
-        login: login
+        login: req.session.user ? true : false
     }
     res.render('beer_shop/index', options)
 }
 
 export async function loginGet(req, res) {
-    try {
-        if( authorization.verifyUser(req.cookie['key'])) res.redirect('/beer-shop?login=true')
-    } catch (err) {
-        console.error(err)
-    }
     const options = {
         title: "Tienda de cervezas | Ingresar",
         login: false
@@ -45,66 +35,43 @@ export async function loginPost(req, res) {
         }
     })
     if (client) {
-        const key = authorization.encrypt(client.name, client.lastname)
-        authorization.addUser(key)
-        res.cookie('key', key, { httpOnly: true })
-        res.redirect('/beer-shop?login=true')
+        req.session.user = authorization.encrypt(client.name, client.lastname)
+        res.redirect('/beer-shop')
     }
-    else res.redirect('/beer-shop/login?login=false')
+    else res.redirect('/beer-shop/signup')
 }
 
-export async function logoutGet(req, res) {
-    const userCredentials = authorization.decrypt(req.cookie['key'])
-    const user = await Client.findOne({
-        where: {
-            name: userCredentials[0],
-            lastname: userCredentials[1]
-        }
+export async function logout(req, res, next) {
+    req.session.user = null
+    req.session.save((err) => {
+        if (err) next(err)
+        req.session.regenerate((err) => {
+            if(err) next(err)
+            res.redirect('/beer-shop')
+        })
     })
-    const options = {
-        title: 'Tienda de cervezas | Salir',
-        user: user,
-        login: true
-    }
-    res.render('beer_shop/logout.ejs', options)
-}
-
-export async function logoutPost(req, res) {
-    authorization.removeUser(req.cookie['key'])
-    delete req.cookie['key']
-    res.redirect('/beer-shop', 205)
 }
 
 export async function signupGet(req, res) {
-    let login = false
-    if (req.cookie['key'] != undefined) login = authorization.verifyUser(req.cookie['key'])
-
     const options = { 
         title: 'Tienda de cervezas | Inscribirse',
-        login: login
+        login: req.session.user ? true : false
     }
     res.render('beer_shop/signup', options)
 }
 
 export async function signupPost(req, res) {
-    const client = await Client.create({
+    await Client.create({
         name: req.body.name,
         lastname: req.body.lastname,
         address: req.body.address,
         postalCode: req.body.postalCode
     })
-    res.redirect('/beer-shop', 302)
+    res.redirect('/beer-shop')
 }
-export async function ticketGet(req, res) {
-    try {
-        if (authorization.verifyUser(req.cookie['key']) == false) res.redirect('/beer-shop/login')
-    } catch (err) {
-        res.redirect('/beer-shop/login')
-    }
-    const user = authorization.decrypt(req.cookie['key'])
-    const items = req.query.items.split(';')
-    items.pop()
 
+export async function ticket(req, res) {
+    const user = authorization.decrypt(req.session.user)
     const client = await Client.findOne({
         where: {
             name: user[0],
@@ -114,7 +81,7 @@ export async function ticketGet(req, res) {
     const products = await Product.findAll({
         where: {
             id: {
-                [Op.or]: items
+                [Op.or]: req.body.id
             }
         }
     })
@@ -126,8 +93,4 @@ export async function ticketGet(req, res) {
     }
 
     res.render('beer_shop/ticket', options)
-}
-
-export async function ticketPost(req, res) {
-    
 }

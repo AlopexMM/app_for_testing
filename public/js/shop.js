@@ -1,22 +1,27 @@
 function additem(item){
-    let counter = document.getElementById('counter')
-    let items = document.getElementById('items')
-    // Agregar un item al texto
-    items.innerText += `${item};`
+    document.getElementById('shopping-cart').hidden = false
+    let total = parseFloat(document.getElementById('shopping-cart-total').innerText)
+    let details = document.getElementById('shopping-cart-details')
+    console.log(item)
+    // Creando elementos de la tabla
+    let tr = document.createElement('tr')
+    let tdId = document.createElement('td')
+    tdId.setAttribute('name', 'id')
+    tdId.innerText = item.id
+    let tdProduct = document.createElement('td')
+    tdProduct.setAttribute('name', 'name')
+    tdProduct.innerText = item.name
+    let tdPrice = document.createElement('td')
+    tdPrice.setAttribute('name', 'price')
+    tdPrice.innerText = item.price
 
-    // Obtiene el nro que contiene y lo pasa a integer
-    let suma = parseInt(counter.innerText) + 1
-    // Reemplaza el valor dentro del p tag
-    counter.innerText = suma
-}
-
-function closeNotification(){
-    let notification = document.getElementById('user-notification')
-    notification.hidden = true
-}
-
-function sendItems(){
-    let items = document.getElementById('items')
-    const url = `/beer-shop/ticket?items=${items.innerText}`
-    window.location.assign(url)
+    // Agregamos los elementos
+    tr.appendChild(tdId)
+    tr.appendChild(tdProduct)
+    tr.appendChild(tdPrice)
+    details.appendChild(tr)
+    
+    // Sumamos el monto al total
+    total += item.price
+    document.getElementById('shopping-cart-total').innerText = total
 }

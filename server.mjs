@@ -1,8 +1,8 @@
 // General imports
 import { URL } from 'node:url'
 import express from 'express'
+import session from 'express-session'
 import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
 import serveFavicon from 'serve-favicon'
 import { dollarDb, beerShopDb } from './data/DBInitializers.mjs'
 
@@ -16,7 +16,13 @@ const PORT = 3001
 
 // Middleware
 const app = express()
-app.use(cookieParser())
+app.set('trusty-proxy', 1)
+app.use(session({
+    secret: 'testing app',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
