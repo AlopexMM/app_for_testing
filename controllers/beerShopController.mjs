@@ -71,6 +71,9 @@ export async function signupPost(req, res) {
 }
 
 export async function ticket(req, res) {
+    // TODO cambiar index.ejs para que envie todos los datos de la tabla
+    // TODO Crear el ticket 
+    // TODO Enviar a ticket.ejs el objeto del ticket
     const user = authorization.decrypt(req.session.user)
     const client = await Client.findOne({
         where: {
@@ -82,16 +85,15 @@ export async function ticket(req, res) {
     const products = await Product.findAll({
         where: {
             id: {
-                [Op.in]: items
+                [Op.or]: items
             }
         }
     })
-
+    
     const options = {
         title: 'Tienda de cervezas | Ticket',
-        products: products,
-        client: client,
-        items: items
+        objects: { products: products, client: client, items: items },
+        login: true,
     }
 
     res.render('beer_shop/ticket', options)

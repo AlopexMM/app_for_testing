@@ -37,7 +37,7 @@ Ticket.init({
     },
     creditCard: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     paid: {
         type: DataTypes.BOOLEAN,

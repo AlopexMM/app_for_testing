@@ -13,6 +13,7 @@ function additem(item){
     inputId.setAttribute('type', 'number')
     inputId.value = item.id
     let tdProduct = document.createElement('td')
+    tdProduct.classList.add('is-size-6')
     tdProduct.innerText = item.name
     let tdPrice = document.createElement('td')
     tdPrice.innerText = item.price

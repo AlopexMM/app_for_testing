@@ -31,25 +31,29 @@
                     </div>
                 </div>
                 <div class="column">
-                    <form action="/beer-shop/ticket" method="post" id="shopping-cart" hidden>
-                        <table class="table is-bordered">
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>Producto</th>
-                                    <th>Precio</th>
-                                </tr>
-                            </thead>
-                            <tbody id="shopping-cart-details"></tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="2" class="has-text-left">TOTAL</th>
-                                    <td id="shopping-cart-total" class="has-text-right">0</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <button class="button is-link mt-3" type="submit">Pagar</button>
-                    </form>
+                    <div class="section">
+                        <div class="container">
+                            <form action="/beer-shop/ticket" method="post" id="shopping-cart" hidden>
+                                <table class="table is-fullwidth">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="shopping-cart-details"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="2" class="has-text-left">TOTAL</th>
+                                            <td id="shopping-cart-total" class="has-text-right">0</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                <button class="button is-link mt-3" type="submit">Pagar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
