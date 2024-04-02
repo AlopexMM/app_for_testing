@@ -2,18 +2,30 @@ import Dollar from "../models/dollar.mjs"
 import Client from "../models/client.mjs"
 import Product from "../models/product.mjs"
 import Ticket from "../models/ticket.mjs"
+import Payment from "../models/payment.mjs"
 import fs from "node:fs"
+
+
+/**
+ * Inicializa y crea todas las tablas de la base de datos de no existir
+ */
+export async function initDBs() {
+    await Dollar.sync()
+    await Ticket.sync()
+    await Product.sync()
+    await Client.sync()
+    await Payment.sync()
+}
 
 /**
  * Procesa el archivo que contiene los datos del dollar desde 2012 a 2023
  * @param filePath con la ubicacion del archivo
 */
-export function dollarDb(filePath) {
+export async function dollarDb(filePath) {
     
     fs.readFile(filePath,{ encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
         const jsonData = JSON.parse(data)
-        await Dollar.sync()
         for (let dObject of jsonData) {
             await Dollar.create({
                 date: dObject.date,
@@ -32,9 +44,6 @@ export function dollarDb(filePath) {
  * @param clientPath la ubicación del archivo con los clientes
 **/
 export async function beerShopDb(productsPath, clientsPath) {
-    await Ticket.sync()
-    await Product.sync()
-    await Client.sync()
 
     fs.readFile(productsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)

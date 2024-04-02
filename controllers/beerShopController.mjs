@@ -3,6 +3,7 @@ import crypto from 'node:crypto'
 import Client from '../models/client.mjs'
 import Product from '../models/product.mjs'
 import Ticket from '../models/ticket.mjs'
+import Payment from '../models/payment.mjs'
 import Authorization from '../assets/authorization.mjs'
 const authorization = new Authorization()
 
@@ -71,9 +72,7 @@ export async function signupPost(req, res) {
 }
 
 export async function ticket(req, res) {
-    // TODO cambiar index.ejs para que envie todos los datos de la tabla
-    // TODO Crear el ticket 
-    // TODO Enviar a ticket.ejs el objeto del ticket
+
     const user = authorization.decrypt(req.session.user)
     const client = await Client.findOne({
         where: {
@@ -81,20 +80,28 @@ export async function ticket(req, res) {
             lastname: user[1]
         }
     })
-    const items = req.body.id.length > 1 ? req.body.id : [req.body.id]
-    const products = await Product.findAll({
-        where: {
-            id: {
-                [Op.or]: items
-            }
-        }
+    const bodyProducts = []
+    for (let i = 0; i < req.body.id.length; i++) {
+        bodyProducts.push({
+          id: req.body.id[i],
+          name: req.body.product[i],
+          price: parseFloat(req.body.price[i])
+        })
+    }
+    const ticket = await Ticket.create({
+        clientId: client.id,
+        products: bodyProducts
     })
     
     const options = {
         title: 'Tienda de cervezas | Ticket',
-        objects: { products: products, client: client, items: items },
+        objects: { products: bodyProducts, client: client, ticket: ticket.id },
         login: true,
     }
 
     res.render('beer_shop/ticket', options)
+}
+
+export async function payment(req, res) {
+    console.log(req.body)
 }

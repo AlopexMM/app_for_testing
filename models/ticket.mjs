@@ -1,6 +1,5 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
-import Client from "./client.mjs";
-import Product from "./product.mjs";
+import { Sequelize, DataTypes, Model, UUIDV4 } from "sequelize";
+import crypto, { randomUUID } from "node:crypto"
 
 const sequelize = new Sequelize('sqlite::memory:')
 
@@ -10,7 +9,8 @@ Ticket.init({
     id: {
         type: DataTypes.UUID,
         defaulValue: DataTypes.UUIDV4,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false,
     },
     clientId: {
         type: DataTypes.INTEGER,
@@ -20,34 +20,21 @@ Ticket.init({
         type: DataTypes.STRING,
         allowNull: false,
         set(values) {
-            let stringValues = ''
-            const length = values.length
-            for ( let i = 0; i < length; i++ ) {
-                if(i+1 == length) {
-                    stringValues += values[i]
-                } else {
-                    stringValues += `${values[i]};`
-                }
-            }
-            this.setDataValue('products', stringValues)
+            this.setDataValue('products', JSON.stringify(values))
         },
         get() {
-            return this.getDataValue('products').split(';')
+            return JSON.parse(this.getDataValue('products'))
         }
-    },
-    creditCard: {
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    paid: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
     }
-
 },{
     sequelize,
     modelName: 'Ticket',
-    timestamps: false
+    timestamps: false,
+    hooks: {
+        beforeValidate: (ticket, options) => {
+            ticket.id = crypto.randomUUID()
+        }
+    }
 })
 
 export default Ticket

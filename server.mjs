@@ -4,7 +4,7 @@ import express from 'express'
 import session from 'express-session'
 import bodyParser from 'body-parser'
 import serveFavicon from 'serve-favicon'
-import { dollarDb, beerShopDb } from './data/DBInitializers.mjs'
+import { dollarDb, beerShopDb, initDBs } from './data/DBInitializers.mjs'
 
 // App imports
 import mainRoutes from './routes/mainRoutes.mjs'
@@ -49,8 +49,9 @@ const dollarFilePath = new URL('./data/evolution.json', import.meta.url).pathnam
 const productsFilePath = new URL('./data/shop.json', import.meta.url).pathname.replace('/', '')
 const clientsFilePath = new URL('./data/clients.json', import.meta.url).pathname.replace('/', '')
 
-app.listen(PORT, () => {
-    dollarDb(dollarFilePath)
-    beerShopDb(productsFilePath, clientsFilePath)
+app.listen(PORT, async () => {
+    await initDBs()
+    await dollarDb(dollarFilePath)
+    await beerShopDb(productsFilePath, clientsFilePath)
     console.log(`Aplicacion corriendo en el puerto ${PORT}`)
 })

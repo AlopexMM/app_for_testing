@@ -48,6 +48,37 @@
                     </div>
                 </div>
             </section>
+            <section class="section">
+                <div class="container">
+                    <form action="/beer-shop/payment" method="post" class="box">
+                        <input type="text" value="<%= objects.ticket %>" id="<%= objects.ticket %>" name="ticketId" hidden>
+                        <input type="text" value="<%= total %>" id="totalPayment" hidden>
+                        <div class="field">
+                            <label for="creditCardNumber" class="label">Numero de tarjeta</label>
+                            <div class="control">
+                                <input type="text" class="input" name="creditCardNumber" id="creditCardNumber">
+                                <div hidden id="check">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div hidden id="xmark">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </div>
+                            </div>
+                            <div class="navbar-brand">
+                                <img src="/images/amex_logo.png" alt="amex" hidden id="amex">
+                                <img src="/images/mc_logo.svg" alt="mastercard" hidden id="mastercard">
+                                <img src="/images/visa_blue_logo.png" alt="visa" hidden id="visa">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="creditCardOwner" class="label">Nombre como figura en la tarjeta</label>
+                            <div class="control">
+                                <input type="text" class="input" name="creditCardOwner">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
         </div>
         <div class="column">
             <div class="section">
@@ -78,7 +109,6 @@
             </div>
         </div>
     </div>
-   
     <%- include('../partials/footer.ejs') %>
     <script src="/js/ticket.js" type="text/javascript"></script>
 </body>
