@@ -7,6 +7,8 @@
         <div class="column is-two-thirds">
             <section class="section">
                 <div class="container is-max-widescreen">
+                    <h3 class="is-3 title mb-3">Detalle de la compra</h3>
+                    <hr>
                     <div class="box">
                         <table class="table is-fullwidth is-hoverable" id="ticket">
                             <thead>
@@ -19,7 +21,7 @@
                             </thead>
                             <tbody>
                                 <% let total = 0.0 %>
-                                <% objects['products'].forEach( product => { %>
+                                <% objects['ticket']['products'].forEach( product => { %>
                                     <% total += product.price %>
                                     <% const complexId = `${product.id}-${product.name}` %>
                                     <tr id="<%= complexId %>">
@@ -36,10 +38,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="3">
+                                    <th colspan="2">
                                         TOTAL
                                     </th>
-                                    <td id="total" class="has-text-right">
+                                    <td id="total" colspan="2" class="has-text-left">
                                         <%= total %>
                                     </td>
                                 </tr>
@@ -50,12 +52,14 @@
             </section>
             <section class="section">
                 <div class="container">
+                    <h3 class="is-3 title mb-3">Pago</h3>
+                    <hr>
                     <form action="/beer-shop/payment" method="post" class="box">
-                        <input type="text" value="<%= objects.ticket %>" id="<%= objects.ticket %>" name="ticketId" hidden>
+                        <input type="text" value="<%= objects.ticket %>" id="<%= objects.ticket.id %>" name="ticketId" hidden>
                         <input type="text" value="<%= total %>" id="totalPayment" hidden>
                         <div class="field">
                             <label for="creditCardNumber" class="label">Numero de tarjeta</label>
-                            <div class="control">
+                            <div class="control mb-3">
                                 <input type="text" class="input" name="creditCardNumber" id="creditCardNumber">
                                 <div hidden id="check">
                                     <i class="fa-solid fa-check"></i>
@@ -64,11 +68,10 @@
                                     <i class="fa-solid fa-xmark"></i>
                                 </div>
                             </div>
-                            <div class="navbar-brand">
-                                <img src="/images/amex_logo.png" alt="amex" hidden id="amex">
-                                <img src="/images/mc_logo.svg" alt="mastercard" hidden id="mastercard">
-                                <img src="/images/visa_blue_logo.png" alt="visa" hidden id="visa">
-                            </div>
+                            <img style="height: 24px" src="/images/visa_blue_logo.png" alt="visa" id="visa" hidden>
+                            <img style="height: 32px" src="/images/mc_logo.svg" alt="mastercard" id="mastercard" hidden>
+                            <img style="height: 32px" src="/images/amex_logo.png" alt="amex" id="amex" hidden>
+
                         </div>
                         <div class="field">
                             <label for="creditCardOwner" class="label">Nombre como figura en la tarjeta</label>
@@ -76,6 +79,7 @@
                                 <input type="text" class="input" name="creditCardOwner">
                             </div>
                         </div>
+                        <button class="button">Pagar</button>
                     </form>
                 </div>
             </section>
@@ -83,6 +87,8 @@
         <div class="column">
             <div class="section">
                 <div class="container">
+                    <h3 class="is-3 title mb-3">Datos del cliente</h3>
+                    <hr>
                     <div class="box">
                         <div class="media-content">
                             <table class="table">

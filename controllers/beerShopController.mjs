@@ -95,7 +95,7 @@ export async function ticket(req, res) {
     
     const options = {
         title: 'Tienda de cervezas | Ticket',
-        objects: { products: bodyProducts, client: client, ticket: ticket.id },
+        objects: { client: client, ticket: ticket },
         login: true,
     }
 

@@ -7,6 +7,8 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-two-thirds">
+                    <h3 class="is-3 title mb-3">Productos</h3>
+                    <hr>
                     <div class="columns is-flex is-flex-wrap-wrap">
                         <% products.forEach(product => { %>
                             <div class="column is-3">
@@ -31,29 +33,26 @@
                     </div>
                 </div>
                 <div class="column">
-                    <div class="section">
-                        <div class="container">
-                            <form action="/beer-shop/ticket" method="post" id="shopping-cart" hidden>
-                                <table class="table is-fullwidth">
-                                    <thead>
-                                        <tr>
-                                            <th>id</th>
-                                            <th>Producto</th>
-                                            <th>Precio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="shopping-cart-details"></tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="2" class="has-text-left">TOTAL</th>
-                                            <td id="shopping-cart-total" class="has-text-right">0</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                                <button class="button is-link mt-3" type="submit">Pagar</button>
-                            </form>
-                        </div>
-                    </div>
+                    <h3 class="is-3 title mb-3">Carrito de compras</h3>
+                    <hr>
+                    <form action="/beer-shop/ticket" method="post" id="shopping-cart" class="box">
+                        <table class="table is-fullwidth">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody id="shopping-cart-details"></tbody>
+                            <tfoot>
+                                <tr>
+                                    <th class="has-text-left">TOTAL</th>
+                                    <td id="shopping-cart-total">0</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <button class="button is-link mt-3" type="submit">Resumen</button>
+                    </form>
                 </div>
             </div>
         </div>
