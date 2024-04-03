@@ -103,5 +103,14 @@ export async function ticket(req, res) {
 }
 
 export async function payment(req, res) {
-    console.log(req.body)
+    if(req.body.creditCardNumber == "4512077452844880") res.render('beer_shop/payment_failed', { 
+        title: "Tienda de cervezas | Pago fallido", objects: {
+            ticket: req.body.ticketId,
+            creditcard: req.body.creditCardNumber
+        },
+        login: true
+    })
+    res.render('beer_shop/payment_success', {
+        title: "Tienda de cervezas | Pago exitoso", ticket: req.body.ticketId, login: true
+    })
 }

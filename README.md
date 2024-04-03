@@ -11,7 +11,8 @@ Abrimos el explorador y escribimos la url http://127.0.0.1:3001
 # Beer Shop
 
 Modelos de tarjetas validos
+3466487636406316
+5123465520613130
 
-Modelos de tarjetas invalidos
-
-Modelo de tarjeta valida que no finaliza el pago
+Tarjeta valida que falla
+4512077452844880

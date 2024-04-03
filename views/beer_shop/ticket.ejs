@@ -55,17 +55,17 @@
                     <h3 class="is-3 title mb-3">Pago</h3>
                     <hr>
                     <form action="/beer-shop/payment" method="post" class="box">
-                        <input type="text" value="<%= objects.ticket %>" id="<%= objects.ticket.id %>" name="ticketId" hidden>
+                        <input type="text" value="<%= objects.ticket.id %>" id="<%= objects.ticket.id %>" name="ticketId" hidden>
                         <input type="text" value="<%= total %>" id="totalPayment" hidden>
                         <div class="field">
                             <label for="creditCardNumber" class="label">Numero de tarjeta</label>
                             <div class="control mb-3">
                                 <input type="text" class="input" name="creditCardNumber" id="creditCardNumber">
                                 <div hidden id="check">
-                                    <i class="fa-solid fa-check"></i>
+                                    <i class="fa-solid fa-check" style="color: rgb(71, 243, 59);"></i>
                                 </div>
                                 <div hidden id="xmark">
-                                    <i class="fa-solid fa-xmark"></i>
+                                    <i class="fa-solid fa-xmark" style="color: red;"></i>
                                 </div>
                             </div>
                             <img style="height: 24px" src="/images/visa_blue_logo.png" alt="visa" id="visa" hidden>
@@ -79,7 +79,7 @@
                                 <input type="text" class="input" name="creditCardOwner">
                             </div>
                         </div>
-                        <button class="button">Pagar</button>
+                        <button class="button mt-3">Pagar</button>
                     </form>
                 </div>
             </section>
