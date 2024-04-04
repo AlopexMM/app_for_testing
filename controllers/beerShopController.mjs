@@ -83,9 +83,9 @@ export async function ticket(req, res) {
     const bodyProducts = []
     for (let i = 0; i < req.body.id.length; i++) {
         bodyProducts.push({
-          id: req.body.id[i],
-          name: req.body.product[i],
-          price: parseFloat(req.body.price[i])
+            id: req.body.id[i],
+            name: req.body.product[i],
+            price: parseFloat(req.body.price[i])
         })
     }
     const ticket = await Ticket.create({

@@ -22,5 +22,3 @@ export default async function verifyCreditCard(cc) {
     if (total % 10 == 0) return true
     return false
 }
-
-console.log(verifyCreditCard("5239375024951566"))
