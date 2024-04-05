@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
 
-const sequelize = new Sequelize('sqlite::memory:')
+const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
 class Client extends Model {}
 

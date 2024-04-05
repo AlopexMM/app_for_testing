@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes, Model, UUIDV4 } from "sequelize";
 import crypto, { randomUUID } from "node:crypto"
 
-const sequelize = new Sequelize('sqlite::memory:')
+const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
 class Ticket extends Model {}
 

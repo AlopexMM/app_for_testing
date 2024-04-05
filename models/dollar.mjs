@@ -1,5 +1,5 @@
 import Sequelize, { DataTypes } from "sequelize";
-const sequelize = new Sequelize('sqlite::memory:', {logging: false})
+const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
 class Dollar extends Sequelize.Model {}
 
