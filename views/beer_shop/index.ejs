@@ -21,7 +21,7 @@
                                     <div class="card-content">
                                         <div class="content is-small">
                                             <p class="title is-6"><%= product.name %></p>
-                                            <span class="tag is-light mt-3"><%= product.brand %></span>
+                                            <span class="tag is-warning is-light mt-3"><%= product.brand %></span>
                                             <span class="tag is-warning mt-3">$ <%= product.price %></span>
                                             <% const productJson = JSON.stringify(product) %>
                                             <div class="button mt-3 is-small" onclick="additem(<%= productJson %>)">Agregar</div> 
