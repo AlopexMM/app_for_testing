@@ -1,14 +1,17 @@
-import { Sequelize, DataTypes, Model, UUIDV4 } from "sequelize";
-import crypto, { randomUUID } from "node:crypto"
+import { Sequelize, DataTypes, Model, UUIDV4, CreationOptional } from "sequelize";
+import crypto, { UUID, randomUUID } from "node:crypto"
 
 const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
-class Ticket extends Model {}
+class Ticket extends Model {
+    declare id: CreationOptional<UUID>
+    declare clientId: number
+    declare products: string
+}
 
 Ticket.init({
     id: {
         type: DataTypes.UUID,
-        defaulValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: false,
     },

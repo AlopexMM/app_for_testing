@@ -2,7 +2,13 @@ import { Sequelize, DataTypes, Model } from "sequelize";
 
 const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
-class Client extends Model {}
+class Client extends Model {
+    declare id: number
+    declare name: string
+    declare lastname: string
+    declare address: string
+    declare postalCode: number
+}
 
 Client.init({
     id: {
@@ -30,7 +36,6 @@ Client.init({
     sequelize,
     timestamps: false,
     modelName: 'Client',
-    timestamps: false
 })
 
 export default Client

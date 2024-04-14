@@ -1,8 +1,8 @@
-import express from 'express'
+import express, { Response, Request, NextFunction } from 'express'
 const router = express.Router()
-import { index, loginGet, loginPost, ticket, signupGet, signupPost, logout, payment } from '../controllers/beerShopController.mjs'
+import { index, loginGet, loginPost, ticket, signupGet, signupPost, logout, payment } from '../controllers/beerShopController.js'
 
-function isAuthenticated(req, res, next) {
+function isAuthenticated(req: Request, res: Response, next: NextFunction) {
     if (req.session.user) next()
     else res.redirect('/beer-shop/login')
 }

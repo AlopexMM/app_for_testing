@@ -1,5 +1,6 @@
+import { Response, Request } from 'express'
 
-export function index(req, res) {
+export function index(req: Request, res: Response) {
     const options = {
         title: "Pagina inicial",
         urls: [

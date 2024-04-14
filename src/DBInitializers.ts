@@ -1,8 +1,8 @@
-import Dollar from "../models/dollar.mjs"
-import Client from "../models/client.mjs"
-import Product from "../models/product.mjs"
-import Ticket from "../models/ticket.mjs"
-import Payment from "../models/payment.mjs"
+import Dollar from "./models/dollar.js"
+import Client from "./models/client.js"
+import Product from "./models/product.js"
+import Ticket from "./models/ticket.js"
+import Payment from "./models/payment.js"
 import fs from "node:fs"
 
 
@@ -21,7 +21,7 @@ export async function initDBs() {
  * Procesa el archivo que contiene los datos del dollar desde 2012 a 2023
  * @param filePath con la ubicacion del archivo
 */
-export async function dollarDb(filePath) {
+export async function dollarDb(filePath: string) {
     
     fs.readFile(filePath,{ encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)
@@ -43,7 +43,7 @@ export async function dollarDb(filePath) {
  * @param productsPath la ubicación del archivo con los productos
  * @param clientPath la ubicación del archivo con los clientes
 **/
-export async function beerShopDb(productsPath, clientsPath) {
+export async function beerShopDb(productsPath: string, clientsPath: string) {
 
     fs.readFile(productsPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) console.error(err)

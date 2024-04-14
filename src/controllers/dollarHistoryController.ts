@@ -1,7 +1,8 @@
-import Dollar from '../models/dollar.mjs'
+import Dollar from '../models/dollar.js'
 import { Op } from 'sequelize'
+import { Response, Request } from 'express'
 
-export async function index(req, res) {
+export async function index(req: Request, res: Response) {
     const records = await Dollar.findAll({
         where: { 
             date: { [Op.like] : '%2023%' },

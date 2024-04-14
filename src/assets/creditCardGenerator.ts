@@ -1,9 +1,9 @@
 /**
  * 
- * @param {String} number 
- * @returns String number de 15 numeros
+ * @param number 
+ * @returns number de 15 numeros
  */
-async function  generateNumber(number) {
+async function  generateNumber(number: string) {
     if (number.length == 15) return number
 
     const newNumber = Math.floor(Math.random() * 9)
@@ -16,10 +16,10 @@ async function  generateNumber(number) {
  * mastercar - para mastercard
  * visa - para visa
  * en caso de entregar una tarjeta que no se convalida en las opciones devuelve -1
- * @param {String} cardType  
+ * @param cardType  
  * @returns creditcard
  */
-export async function generateCard(cardType) {
+export async function generateCard(cardType: string) {
     let creditcard = ""
     if (cardType == "amex") creditcard = await generateNumber('3')
     if (cardType == "visa") creditcard = await generateNumber('4')

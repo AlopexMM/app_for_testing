@@ -1,9 +1,9 @@
 /**
  * Verifica el codigo de la tarjeta de credito
- * @param {String} cc 
- * @returns {Boolean} 
+ * @param cc 
+ * @returns 
  */
-export default async function verifyCreditCard(cc) {
+export default async function verifyCreditCard(cc: string) {
     let even = 0
     let odd = 0
     let total = 0

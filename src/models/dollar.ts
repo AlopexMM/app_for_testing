@@ -1,7 +1,13 @@
-import Sequelize, { DataTypes } from "sequelize";
+import { Sequelize, DataTypes, Model, DecimalDataType } from "sequelize";
 const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
-class Dollar extends Sequelize.Model {}
+class Dollar extends Model {
+    declare id: number
+    declare date: string
+    declare source: string
+    declare sell: DecimalDataType
+    declare buy: DecimalDataType
+}
 
 Dollar.init({
     id: {

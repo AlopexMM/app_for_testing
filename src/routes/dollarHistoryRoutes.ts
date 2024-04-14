@@ -1,4 +1,4 @@
-import { index } from '../controllers/dollarHistoryController.mjs'
+import { index } from '../controllers/dollarHistoryController.js'
 import express from 'express'
 const router = express.Router()
 

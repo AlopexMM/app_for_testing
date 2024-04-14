@@ -1,8 +1,14 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { Sequelize, DataTypes, Model, DecimalDataType } from "sequelize";
 
 const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
-class Product extends Model {}
+class Product extends Model {
+    declare id: number
+    declare name: string
+    declare brand: string
+    declare image: string
+    declare price: DecimalDataType
+}
 
 Product.init({
     id: {

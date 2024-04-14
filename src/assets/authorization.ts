@@ -7,7 +7,7 @@ class Authorization {
      * @param lastname apellido del usuario
      * @returns base64 text
      */
-    encrypt(name, lastname) {
+    encrypt(name: string, lastname: string) {
         return Buffer.from(`${name}:${lastname}`, 'utf8').toString('base64')
     }
 
@@ -16,7 +16,7 @@ class Authorization {
      * @param base64Text texto encriptado
      * @returns texto desencriptado
      */
-    decrypt(base64Text){
+    decrypt(base64Text: string): Array<string>{
         return Buffer.from(base64Text, 'base64').toString('utf8').split(':')
     }
 }

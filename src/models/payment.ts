@@ -1,8 +1,14 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { UUID } from "node:crypto";
+import { Sequelize, DataTypes, Model, CreationOptional } from "sequelize";
 
 const sequelize = new Sequelize('sqlite::memory:', { logging: false })
 
-class Payment extends Model {}
+class Payment extends Model {
+    declare id: number
+    declare tickerId: CreationOptional<UUID>
+    declare creditCardNumber: string
+    declare creditCardName: string
+}
 
 Payment.init({
     id: {
