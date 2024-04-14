@@ -36,13 +36,13 @@ app.use(bodyParser.json())
 
 // static
 const src = path.resolve('.')
-console.log(src)
-app.use('/images', express.static(path.join(src, 'public/img')))
-app.use('/js', express.static(path.join(src, 'public/js')))
-app.use('/css', express.static(path.join(src, 'public/css')))
-app.use(serveFavicon(path.join(src, 'public/favicon.ico')))
+app.use('/images', express.static(path.join(__dirname, 'public/img')))
+app.use('/js', express.static(path.join(__dirname, 'public/js')))
+app.use('/css', express.static(path.join(__dirname, 'public/css')))
+app.use(serveFavicon(path.join(__dirname, 'public/favicon.ico')))
 
 // Engine
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 // Routes
@@ -51,9 +51,9 @@ app.use(beerShopRoutes)
 app.use(dollarHistoryRoutes)
 
 // File for database in memory
-const dollarFilePath = path.join(src, 'data/evolution.json')
-const productsFilePath = path.join(src, 'data/shop.json')
-const clientsFilePath = path.join(src, 'data/clients.json')
+const dollarFilePath = path.join(__dirname, 'data/evolution.json')
+const productsFilePath = path.join(__dirname, 'data/shop.json')
+const clientsFilePath = path.join(__dirname, 'data/clients.json')
 
 app.listen(PORT, async () => {
     await initDBs()

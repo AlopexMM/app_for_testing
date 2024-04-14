@@ -4,9 +4,9 @@
   "description": "Para correr la aplicación ejecutar lo siguiente para Windows",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "node cleanDist.js && npx tsc",
+    "build": "node ./build/cleanDist.js && node ./build/copyNonTypeScriptFiles.js && npm run build-css && npx tsc",
     "start": "npm run build && node dist/index.js",
-    "build-css": "sass --load-path=node_modules sass/mystyles.scss ./public/css/mystyles.css"
+    "build-css": "sass --load-path=node_modules sass/mystyles.scss ./dist/public/css/mystyles.css"
   },
   "keywords": [],
   "author": "",
